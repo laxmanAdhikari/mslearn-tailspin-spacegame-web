@@ -1,4 +1,5 @@
-parameters: buildconfiguration:'Release'
+parameters:
+  buildConfiguration: "Release"
 
 steps:
   - task: DotNetCoreCLI@2
@@ -9,10 +10,10 @@ steps:
       projects: "**/*.csproj"
 
   - task: DotNetCoreCLI@2
-    displayName: "BuiPublishld the project - ${{ parameters.buildConfiguration }}"
+    displayName: "Publish the project - ${{ parameters.buildConfiguration }}"
     inputs:
       command: "publish"
       projects: "**/*.csproj"
       publishWebProjects: false
-      arguments: "--no-build --configuration ${{ parameters.buildConfiguration }} --output $(Build.ArtifacStagingDirectory)/${{ parameters.buildConfiguration }}"
+      arguments: "--no-build --configuration ${{ parameters.buildConfiguration }} --output $(Build.ArtifactStagingDirectory)/${{ parameters.buildConfiguration }}"
       zipAfterPublish: true
